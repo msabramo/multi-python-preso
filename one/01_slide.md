@@ -75,56 +75,6 @@
 
 
 
-<!SLIDE>
-
-# How about [virtualenv](http://www.virtualenv.org/)?
-
-
-
-<!SLIDE>
-
-# Create virtualenvs...
-
-	@@@bash
-	virtualenv -p python2.6 venvs/py26
-	virtualenv -p python2.7 venvs/py27
-	virtualenv -p python3.2 venvs/py32
-	virtualenv -p python3.3 venvs/py33
-	virtualenv -p pypy venvs/pypy
-
-
-
-<!SLIDE>
-
-# Use the virtualenvs
-
-	@@@bash
-	for env in py26 py27 py32 py33 pypy; do
-		source venvs/${env}/bin/activate
-		python setup.py test
-		deactivate
-	done
-	
-!SLIDE This works... incremental
-# This works...but...
-
-* Doesn't handle changing dependencies
-* What if you add a dependency?
-  - Have to rebuild virtualenv
-* What if you remove a dependency?
-  - If you don't rebuild virtualenv, problem could be masked.
-
-!SLIDE You could fix these issues... incremental
-# You could fix these issues...
-
-.notes [Coverage.py](http://nedbatchelder.com/code/coverage/) had a system of 
-shell scripts to manage and tests against venvs. This problem of virtualenvs 
-is a general problem other people have bumped into and it led to things like 
-[Buildout](http://www.buildout.org/) in the Zope world.
-
-* And end up with something similar to **Tox**.
-* So why not use Tox?
-
 !SLIDE Tox
 # Tox
 
