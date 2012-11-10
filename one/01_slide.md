@@ -439,25 +439,6 @@ the original, untranslated module(s) => errors with Python 3
 
 <!SLIDE>
 
-# Example multi-python code (3)
-
-	@@@python
-	if PY3:
-	    def b(s):
-	        return s.encode("latin-1")
-	    def u(s):
-	        return s
-	else:
-		def b(s):
-		    return s
-		def u(s):
-		    return unicode(
-			    s, "unicode_escape")
-
-
-
-<!SLIDE>
-
 # This can get a big ugly...
 
 
