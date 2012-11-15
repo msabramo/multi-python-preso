@@ -2,11 +2,12 @@
 
 # Making Projects Work With Multiple Versions of Python
 
-## Marc Abramowitz
-## http://marc-abramowitz.com/
-## @msabramo
-## marc@marc-abramowitz.com
-## https://github.com/msabramo/multi-python-preso
+## [Marc Abramowitz](http://marc-abramowitz.com/)
+## [http://marc-abramowitz.com/](http://marc-abramowitz.com/)
+## [@msabramo](https://twitter.com/MSAbramo)
+## [marc@marc-abramowitz.com](mailto:marc@marc-abramowitz.com?subject=Multi Python Presentation)
+## [http://msabramo.github.com/multi-python-preso/](http://msabramo.github.com/multi-python-preso/)
+## [http://github.com/msabramo/multi-python-preso](http://github.com/msabramo/multi-python-preso)
 
 
 
@@ -566,10 +567,10 @@ Reorganizations and renamings
 
 # Liked this talk?
 
-* Proposal submitted to give this talk at PyCon US 2013 in March
+* Proposal submitted to give this talk at [PyCon US 2013](http://us.pycon.org/2013/) in March
 	* [https://us.pycon.org/2013/proposals/147/](https://us.pycon.org/2013/proposals/147/)
-* Think this would be a good talk for PyCon?
-* Tweet to @pycon and tell them that you liked talk proposal 147.
+* Think this would be a good talk for [PyCon](http://us.pycon.org/2013/)?
+* Tweet to [@pycon](https://twitter.com/pycon) and tell them that you liked talk proposal 147.
 
 
 
@@ -577,8 +578,9 @@ Reorganizations and renamings
 
 # Questions?
 
-## Marc Abramowitz
-## http://marc-abramowitz.com/
-## @msabramo
-## marc@marc-abramowitz.com
-## https://github.com/msabramo/multi-python-preso
+## [Marc Abramowitz](http://marc-abramowitz.com/)
+## [http://marc-abramowitz.com/](http://marc-abramowitz.com/)
+## [@msabramo](https://twitter.com/MSAbramo)
+## [marc@marc-abramowitz.com](mailto:marc@marc-abramowitz.com?subject=Multi Python Presentation)
+## [http://msabramo.github.com/multi-python-preso/](http://msabramo.github.com/multi-python-preso/)
+## [http://github.com/msabramo/multi-python-preso](http://github.com/msabramo/multi-python-preso)
