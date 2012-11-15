@@ -6,7 +6,7 @@
 ## http://marc-abramowitz.com/
 ## @msabramo
 ## marc@marc-abramowitz.com
-## github.com/msabramo/django-testing-slides
+## https://github.com/msabramo/multi-python-preso
 
 
 
@@ -581,4 +581,4 @@ Reorganizations and renamings
 ## http://marc-abramowitz.com/
 ## @msabramo
 ## marc@marc-abramowitz.com
-## github.com/msabramo/django-testing-slides
+## https://github.com/msabramo/multi-python-preso
