@@ -1,4 +1,4 @@
-<!SLIDE smaller intro>
+<!SLIDE smaller intro title-slide>
 
 # Making Projects Work With Multiple Versions of Python
 
@@ -12,6 +12,17 @@
 
 <!SLIDE>
 
+# About this talk
+
+* About 40 minutes of material
+* Proposal submitted to give this talk at PyCon US 2013 in March
+	* [https://us.pycon.org/2013/proposals/147/](https://us.pycon.org/2013/proposals/147/)
+* Let's try taking questions throughout
+
+
+
+<!SLIDE>
+
 # Outline
 
 * Targeting multiple pythons: the problem
@@ -19,8 +30,8 @@
 	* Tox
 	* Travis CI
 * Multi-Python Compatibility Approaches
-	* Translation tools - distribute's `use_2to3`
-	* Writing multi-python code - `six`
+	* Translation tools (e.g.: `2to3`, distribute's `use_2to3`)
+	* Python 2/3 Compatible Source (possibly with help from `six`)
 
 
 
@@ -51,14 +62,25 @@
 
 .notes even more dramatic differences
 
-* `print` statement vs. `print` function
+* `print` **statement** vs. `print` **function**
 * Unicode handling
 	* `str` and `unicode` vs. `bytes` and `str`
 	* `u` and `b` syntax for string literals
-* moved classes and renamed modules
+* Moved classes and renamed modules
 	* `httplib` => `http.client`
 	* `StringIO.StringIO` => `io.StringIO`
 
+
+
+<!SLIDE small>
+
+# Why is compatibility important?
+
+* A lot of Pythons out there in the wild from 2.4 to 3.3
+	* Want to make libraries support as many as possible and practical, so they have wide audience.
+* The Python 2 vs. 3 divide
+	* Python 3 is the future. All core work happening in 3.
+	* But lots of stuff still using Python 2 because other stuff not supporting Python 3.
 
 
 <!SLIDE section>
@@ -141,39 +163,32 @@ This is in constrast to Travis CI, which we will see in a bit...
 
 <!SLIDE>
 
+# Run Tox
+
+* Execute `tox` in project root directory.
+
+
+
+<!SLIDE center>
+
+# Congratulations!
+
+![Tox_results_screenshot](images/Tox_results_screenshot_2.png)
+
+
+
+<!SLIDE smaller>
+
 # Other Tox features
  
 * `tox -e py32,py33`
 * `deplist` - specify packages needed
 * environment-specific sections
 	* e.g.: `[testenv:py26]`
-* variable substitutions
+* variable substitutions, pseudo-inheritance
+	* e.g.: allows some environments to have extra dependencies
 
 .notes `deplist` overlaps with putting dependencies in `setup.py`, but useful for putting test-only dependencies
-
-
-
-<!SLIDE>
-
-# Tox summary
-
-* Prerequisites
-	* Install Pythons
-	* Create `setup.py`
-* Create `tox.ini`
-* Hack and test **locally**
-
-
-
-<!SLIDE>
-
-# Creating `tox.ini`
-
-* Copy one from another project
-* [https://github.com/msabramo/python-panci](https://github.com/msabramo/python-panci)
-    * `panci --to=tox .travis.yml`
-	* `panci-tox-quickstart`
-		* Trying to add to tox itself ([PR 20](https://bitbucket.org/hpk42/tox/pull-request/20/add-a-tox-quickstart-command/diff))
 
 
 
@@ -190,29 +205,17 @@ This is in constrast to Travis CI, which we will see in a bit...
 * [http://about.travis-ci.org/](http://about.travis-ci.org/)
 * CI in the cloud, via virtual machines
 * You don't install Pythons
-* Triggered by GitHub service hooks
+* Triggered by **GitHub** service hooks
+* Free and open-source
+* Language-agnostic
+
+.notes Languages are C, C++, Clojure, Erlang, Go, Groovy, Haskell, Java, JavaScript (with Node.js), Perl, PHP, Python, Ruby, Scala
 
 
 
 <!SLIDE>
 
-# Free and open-source
-
-* Though there is a Pro version in beta for private repos
-
-
-
-<!SLIDE>
-
-# Language-agnostic
-
-* C, C++, Clojure, Erlang, Go, Groovy, Haskell, Java, JavaScript (with Node.js), Perl, PHP, Python, Ruby, Scala
-
-
-
-<!SLIDE>
-
-# Environment goodies
+# Travis CI Environment is Rich
 
 * gcc, clang, make, autotools, apt-get
 * MySQL, PostgreSQL, MongoDB, Redis, RabbitMQ, ZeroMQ, ElasticSearch, etc.
@@ -227,8 +230,10 @@ This is in constrast to Travis CI, which we will see in a bit...
 
 # Setting up Travis CI
 
-* Create `.travis.yml`
 * Set up GitHub service hook
+	* Sign into Travis CI with GitHub
+	* Pick which repos to enable for Travis CI
+* Create `.travis.yml`
 * Commit, push, test
 
 
@@ -254,38 +259,36 @@ This is in constrast to Travis CI, which we will see in a bit...
 
 <!SLIDE>
 
-# Creating `.travis.yml`
-
-* Copy one from another project
-* [https://github.com/msabramo/python-panci](https://github.com/msabramo/python-panci)
-    * `panci --to=travis tox.ini`
-* Use [`travis-lint` web app or CLI tool](http://about.travis-ci.org/docs/user/travis-lint/) to check your syntax
-
-
-
-<!SLIDE>
-
-# GitHub service hook
-
-* Sign in with GitHub
-
-![Sign in with GitHub](http://f.cl.ly/items/0A31312A0j1N3D1G351B/Screen%20shot%202012-11-05%20at%2011.39.53%20AM.png)
-
-
-
-<!SLIDE center>
-
-![Enabling Travis for repos](http://f.cl.ly/items/3E141W2B0y44130g023d/Screen%20shot%202012-11-09%20at%202.21.11%20PM.png)
-
-
-
-<!SLIDE>
-
 # Push to test
 
 * `git push`
 * Watch the Web UI
 * Or wait for notification via email or IRC
+
+
+
+<!SLIDE center smaller>
+
+Travis CI Build Result Page
+
+![Travis_CI_Result_screenshot](images/Travis_CI_Result_screenshot_2.png)
+
+
+
+<!SLIDE center smaller>
+
+# Travis CI Build Badge Image
+
+![Travis_CI_badge_highlighted](images/Travis_CI_badge_highlighted.png)
+
+
+
+<!SLIDE>
+
+# Travis CI for pull requests
+
+* Travis CI also has the ability to automatically run tests on incoming pull requests
+* Great for repo owner to see whether the PR passes tests.
 
 
 
@@ -325,121 +328,28 @@ This is in constrast to Travis CI, which we will see in a bit...
 
 * You can use both to get advantages of both
 * Disadvantage: more files to maintain
-	* Might be possible to address by generating one from another -- e.g.: [panci]((https://github.com/msabramo/python-panci))
 
 .notes annoying to maintain dependencies in setup.py, requirements.txt, tox.ini, and .travis.yml; mention panci & travis2tox & tox2travis...?
+
+
+<!SLIDE>
+
+# Panci
+
+* Experimental tool for converting between CI file formats
+	* tox-quickstart
+	* Tox to Travis CI
+	* Travis CI to Tox
+* [https://github.com/msabramo/python-panci](https://github.com/msabramo/python-panci)
 
 
 
 <!SLIDE section>
 
 # Multi-Python Compatibility
+## with an emphasis on Python 2/3 compatibility
 
-
-
-<!SLIDE>
-
-# Approaches
-
-* Use tools for testing - Tox and Travis CI
-* Leverage translation tools like `2to3`
-* Write code that works with multiple versions
-
-
-
-<!SLIDE>
-
-# Strategies - tradeoffs
-
-* Translation tools
-	* Sort of a crutch.
-	* Prevent you from using new features - e.g.: Python 3's unicode handling.
-* Writing multi-python code 
-	* Can sometimes get a bit ugly.
-	* Libraries like `six` can help.
-
-
-
-<!SLIDE>
-
-# Translation: 2to3
-
-* CLI tool that comes with recent Pythons
-* Translates from Python 2 to 3
-* But then it doesn't work in Python 2
-* Python 3 also comes with a 3to2
-* These tools encourage forking and having separate Python 2 and 3 codebases. Yuck. 
-
-
-
-<!SLIDE>
-
-# Translation: distribute's `use_2to3` feature
-
-* Put `use_2to3=True` in `setup.py`
-* Translates **on the fly** when user does `python setup.py install`.
-* Developer writes only Python 2 code.
-
-
-
-<!SLIDE>
-
-# `use_2to3` caveat
-
-* If Tox or Travis runs tests in the source directory, it will likely pick up 
-the original, untranslated module(s) => errors with Python 3
-* One way to solve:
-
-	`nosetests -w /tmp mypackage.tests`
-
-
-
-<!SLIDE>
-
-# Multi-python code: Problems
-
-* Handling `str` and `unicode` vs. `bytes` and `str`
-* Literal notation like `u''` and `b''`
-* Moved classes and modules. 
-	* `StringIO.StringIO` => `io.StringIO`
-	* `xrange` => `range`
-	* `httplib` => `http.client`
-
-
-
-<!SLIDE>
-
-# Example multi-python code (1)
-
-	@@@python
-    try:
-        # Python 2
-        unicode
-    except NameError:
-        # Python 3
-    	unicode = str
-
-
-
-<!SLIDE>
-
-# Example multi-python code (2)
-
-	@@@python
-	try:
-		# Python 2
-	    from StringIO import StringIO
-	except ImportError:
-		# Python 3
-	    from io import StringIO
-
-	s = StringIO()
-
-
-
-<!SLIDE>
-
-# This can get a big ugly...
+.notes Especially focused on Python 2 vs. Python 3
 
 
 
@@ -468,7 +378,99 @@ Reorganizations and renamings
 
 <!SLIDE>
 
-# 2 x 3 = 6
+# 2 vs. 3
+
+* Handling `str` and `unicode` vs. `bytes` and `str`
+* Literal notation like `u''` and `b''`
+* Moved classes and modules. 
+	* `StringIO.StringIO` => `io.StringIO`
+	* `xrange` => `range`
+	* `httplib` => `http.client`
+
+.notes `u` syntax for string literals removed in Python 3 but added back in Python 3.3 ([PEP 0414](http://www.python.org/dev/peps/pep-0414/))
+
+
+
+<!SLIDE>
+
+# Approaches
+
+* Use tools for testing - Tox and Travis CI
+* Leverage translation tools like `2to3`, `3to2`, etc.
+* Python 2/3 Compatible Source
+
+
+
+<!SLIDE>
+
+# Strategies - tradeoffs
+
+* Translation tools
+	* Sort of a crutch.
+	* Prevent you from using new features - e.g.: Python 3's unicode handling.
+* Python 2/3 Compatible Source
+	* Can sometimes get a bit ugly.
+	* Libraries like `six` can help.
+
+
+
+<!SLIDE small>
+
+# Translation: `2to3`
+
+* CLI tool that comes with recent Pythons
+* Translates from Python 2 to 3
+* But then it doesn't work in Python 2
+* `3to2` (3rd party)
+* Running these tools manually encourages forking and having separate Python 2 and 3 codebases. Yuck. 
+* python's `-3` option: find problems before running `2to3`
+
+
+
+<!SLIDE>
+
+# Translation: distribute's `use_2to3` feature
+
+* Put `use_2to3=True` in `setup.py`
+* Translates **on the fly** when user does `python setup.py install`.
+* Leverages `2to3` but runs automatically at **install-time**.
+* Developer maintains only one code base.
+
+
+
+<!SLIDE>
+
+# Example Python 2/3 Compatible Source (1)
+
+	@@@python
+    try:
+        # Python 2
+        unicode
+    except NameError:
+        # Python 3
+    	unicode = str
+
+
+
+<!SLIDE>
+
+# Example Python 2/3 Compatible Source (2)
+
+	@@@python
+	try:
+		# Python 2
+	    from StringIO import StringIO
+	except ImportError:
+		# Python 3
+	    from io import StringIO
+
+	s = StringIO()
+
+
+
+<!SLIDE>
+
+# This can get a big ugly...
 
 
 
@@ -479,6 +481,7 @@ Reorganizations and renamings
 * Python 2 and 3 compatibility library
 * by Benjamin Peterson (Python core dev)
 * [http://pypi.python.org/pypi/six/](http://pypi.python.org/pypi/six/)
+* `pip install six`
 * Has lots of abstractions for things that differ
 
 
@@ -507,17 +510,24 @@ Reorganizations and renamings
 
 <!SLIDE>
 
-# `six` makes writing multi-python code easier
+# `six` makes writing Python 2/3 compatible source easier
+
+
+
+<!SLIDE small>
+
+# Django 1.5 is using `six` to achieve Python 2/3 compatible source
+
+## [https://www.djangoproject.com/weblog/2012/aug/19/experimental-python-3-support/](https://www.djangoproject.com/weblog/2012/aug/19/experimental-python-3-support/)
 
 
 
 <!SLIDE>
 
-# Test across Pythons
+# Test!
 
-* Whether you write multi-python code (with or without `six`)...
-* Or use `use_2to3`
-* Test across multiple Pythons with Tox and/or Travis
+* Whatever strategy you use...
+* Test across multiple Python versions with Tox and/or Travis CI.
 
 
 
@@ -530,8 +540,36 @@ Reorganizations and renamings
 	* Tox
 	* Travis CI
 * Multi-Python Compatibility Approaches
-	* Translation tools - distribute's `use_2to3`
-	* Writing multi-python code - `six`
+	* Translation tools
+	* Python 2/3 Compatible Source
+
+
+
+<!SLIDE smaller>
+
+# Resources
+
+* [Porting to Python 3 (Lennart Regebro)](http://python3porting.com/)
+* [Porting Python 2 Code to Python 3 (Brett Cannon)](http://docs.python.org/3/howto/pyporting.html)
+* [zzzeek's Guide to Python 3 Porting (Mike Bayer)](http://techspot.zzzeek.org/2011/01/24/zzzeek-s-guide-to-python-3-porting/)
+* [Porting to Python 3 — A Guide (Armin Ronacher)](http://lucumr.pocoo.org/2010/2/11/porting-to-python-3-a-guide/)
+* [Writing Forwards Compatible Python Code (Armin Ronacher)](http://lucumr.pocoo.org/2011/1/22/forwards-compatible-python/)
+* [Porting Python Code to 3.0 (wiki.python.org)](http://wiki.python.org/moin/PortingPythonToPy3k)
+* [python-panci](https://github.com/msabramo/python-panci)
+* [Tox-QuickStart PR](https://bitbucket.org/hpk42/tox/pull-request/20/add-a-tox-quickstart-command/diff)
+* [Experimental Python 3 support (Django)](https://www.djangoproject.com/weblog/2012/aug/19/experimental-python-3-support/)
+
+
+
+
+<!SLIDE>
+
+# Liked this talk?
+
+* Proposal submitted to give this talk at PyCon US 2013 in March
+	* [https://us.pycon.org/2013/proposals/147/](https://us.pycon.org/2013/proposals/147/)
+* Think this would be a good talk for PyCon?
+* Tweet to @pycon and tell them that you liked talk proposal 147.
 
 
 
