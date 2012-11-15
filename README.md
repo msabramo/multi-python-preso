@@ -1,3 +1,5 @@
+View these slides at [http://msabramo.github.com/multi-python-preso/](http://msabramo.github.com/multi-python-preso/).
+
 This presentation uses [ShowOff](https://github.com/schacon/showoff).
 
 To view it locally, `gem install showoff` and run `showoff serve` in this
